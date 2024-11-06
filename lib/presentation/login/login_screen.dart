@@ -144,7 +144,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     const SizedBox(height: 10),
                     SecondaryCustomButton(
                       onPressed: () {
-                        context.push('/register_user');
+                        context.push('/user_register');
                       },
                       text: AppLocale.signup.getString(context),
                     ),
