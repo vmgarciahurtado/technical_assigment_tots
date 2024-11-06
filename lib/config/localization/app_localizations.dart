@@ -4,6 +4,7 @@ mixin AppLocale {
   static const String login = 'login';
   static const String signup = 'signup';
   static const String title = 'title';
+  static const String delete = 'delete';
   static const String mail = 'mail';
   static const String password = 'password';
   static const String confirm_password = 'confirm_password';
@@ -32,6 +33,7 @@ mixin AppLocale {
     login: 'LOG IN',
     signup: 'SIGN UP',
     title: 'MINIMAL',
+    delete: 'Delete',
     mail: 'Mail',
     password: 'Password',
     confirm_password: 'Confirm password',
@@ -48,7 +50,7 @@ mixin AppLocale {
     email_address: 'Email Address',
     upload_image: 'Upload Image',
     add_new_user: 'Add new user',
-    load_more: 'Load More',
+    load_more: 'LOAD MORE',
     invalid_mail: 'Invalid Mail',
     invalid_password: 'Invalid Password',
     diferent_password: 'Passwords do not match',
@@ -61,6 +63,7 @@ mixin AppLocale {
     login: 'INICIAR SESIÓN',
     signup: 'REGISTRARSE',
     title: 'MINIMAL',
+    delete: 'Eliminar',
     mail: 'Correo',
     password: 'Contraseña',
     confirm_password: 'Confirmar contraseña',
@@ -77,7 +80,7 @@ mixin AppLocale {
     email_address: 'Dirección de Correo',
     upload_image: 'Subir Imagen',
     add_new_user: 'Añadir Nuevo Usuario',
-    load_more: 'Cargar Más',
+    load_more: 'CARGAR MAS',
     invalid_mail: 'Correo Invalido',
     invalid_password: 'Contraseña Invalida',
     diferent_password: 'Las contraseñas no coinciden',

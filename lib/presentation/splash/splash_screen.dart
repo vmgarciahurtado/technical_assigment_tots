@@ -29,7 +29,7 @@ class SplashScreenState extends State<SplashScreen>
       if (status == AnimationStatus.completed) {
         if (await storage.containsKey(key: dotenv.env['TOKEN_VALUE'] ?? '')) {
           if (mounted) {
-            context.go('/home');
+            context.go('/clients');
           }
         } else {
           if (mounted) {

@@ -1,26 +1,26 @@
 class Client {
-  int id;
-  String firstname;
-  String lastname;
-  String email;
-  dynamic address;
-  dynamic photo;
-  dynamic caption;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int userId;
+  int? id;
+  String? firstname;
+  String? lastname;
+  String? email;
+  dynamic? address;
+  dynamic? photo;
+  dynamic? caption;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? userId;
 
   Client({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.email,
-    required this.address,
-    required this.photo,
-    required this.caption,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.userId,
+    this.id,
+    this.firstname,
+    this.lastname,
+    this.email,
+    this.address,
+    this.photo,
+    this.caption,
+    this.createdAt,
+    this.updatedAt,
+    this.userId,
   });
 
   factory Client.fromJson(Map<String, dynamic> json) => Client(
@@ -44,8 +44,8 @@ class Client {
         "address": address,
         "photo": photo,
         "caption": caption,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt,
+        "updated_at": updatedAt,
         "user_id": userId,
       };
 }

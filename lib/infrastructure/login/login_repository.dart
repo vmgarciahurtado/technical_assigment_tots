@@ -12,13 +12,7 @@ class LoginRepository extends ILoginRepository {
     try {
       final response = await Api.post('/oauth/token', data);
 
-      final int statusCode;
-      if (response.statusCode is String) {
-        statusCode =
-            int.tryParse(response.statusCode as String, radix: 16) ?? 0;
-      } else {
-        statusCode = response.statusCode ?? 0;
-      }
+      int statusCode = response.statusCode!;
 
       if (statusCode == 200 || statusCode == 201) {
         final token = response.data['access_token'];

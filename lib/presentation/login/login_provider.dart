@@ -37,7 +37,7 @@ class LoginServiceProvider {
         );
       },
       (data) {
-        context.go('/home');
+        context.go('/clients');
       },
     );
   }

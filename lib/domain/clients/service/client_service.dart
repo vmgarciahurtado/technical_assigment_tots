@@ -6,7 +6,7 @@ class ClientService {
 
   ClientService({required this.iClientRepository});
 
-  Future<List<Client>> login() async {
+  Future<List<Client>> getClients() async {
     return await iClientRepository.getClients();
   }
 }

@@ -9,13 +9,7 @@ class UserRepository extends IUserRepository {
     try {
       final response = await Api.post('/users', data);
 
-      final int statusCode;
-      if (response.statusCode is String) {
-        statusCode =
-            int.tryParse(response.statusCode as String, radix: 16) ?? 0;
-      } else {
-        statusCode = response.statusCode ?? 0;
-      }
+      int statusCode = response.statusCode!;
 
       if (statusCode == 200 || statusCode == 201) {
         return Right(response.data);
