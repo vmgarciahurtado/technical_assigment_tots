@@ -6,6 +6,7 @@ mixin AppLocale {
   static const String title = 'title';
   static const String mail = 'mail';
   static const String password = 'password';
+  static const String confirm_password = 'confirm_password';
   static const String search = 'search';
   static const String register = 'register';
   static const String clients = 'clients';
@@ -22,7 +23,10 @@ mixin AppLocale {
   static const String load_more = 'load_more';
   static const String invalid_mail = 'invalid_mail';
   static const String invalid_password = 'invalid_password';
+  static const String diferent_password = 'diferent_password';
   static const String required_field = 'required_field';
+  static const String success_user_register = 'success_user_register';
+  static const String loading = 'loading';
 
   static const Map<String, dynamic> EN = {
     login: 'LOG IN',
@@ -30,6 +34,7 @@ mixin AppLocale {
     title: 'MINIMAL',
     mail: 'Mail',
     password: 'Password',
+    confirm_password: 'Confirm password',
     search: 'Search',
     register: 'Register',
     clients: 'Clients',
@@ -46,7 +51,10 @@ mixin AppLocale {
     load_more: 'Load More',
     invalid_mail: 'Invalid Mail',
     invalid_password: 'Invalid Password',
+    diferent_password: 'Passwords do not match',
     required_field: 'The field is required',
+    success_user_register: 'User successfully registered',
+    loading: 'Loading..'
   };
 
   static const Map<String, dynamic> ES = {
@@ -55,6 +63,7 @@ mixin AppLocale {
     title: 'MINIMAL',
     mail: 'Correo',
     password: 'Contraseña',
+    confirm_password: 'Confirmar contraseña',
     search: 'Buscar',
     register: 'Registrar',
     clients: 'Clientes',
@@ -71,6 +80,9 @@ mixin AppLocale {
     load_more: 'Cargar Más',
     invalid_mail: 'Correo Invalido',
     invalid_password: 'Contraseña Invalida',
+    diferent_password: 'Las contraseñas no coinciden',
     required_field: 'El campo es requerido',
+    success_user_register: 'Usuario registrado con exito',
+    loading: 'Cargando..',
   };
 }

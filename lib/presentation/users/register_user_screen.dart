@@ -16,6 +16,7 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final firstnameController = TextEditingController();
 
   @override
@@ -29,7 +30,9 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(AppLocale.add_new_user.getString(context)),
       ),
       body: Padding(
@@ -42,6 +45,7 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
                 controller: emailController,
                 decoration: InputDecoration(
                     labelText: AppLocale.mail.getString(context)),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
                     return AppLocale.invalid_mail.getString(context);
@@ -55,6 +59,7 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
                 decoration: InputDecoration(
                     labelText: AppLocale.password.getString(context)),
                 obscureText: true,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return AppLocale.invalid_password.getString(context);
@@ -64,9 +69,25 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                controller: confirmPasswordController,
+                decoration: InputDecoration(
+                    labelText: AppLocale.confirm_password.getString(context)),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null ||
+                      value.isEmpty ||
+                      (value != passwordController.text)) {
+                    return AppLocale.diferent_password.getString(context);
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
                 controller: firstnameController,
                 decoration: InputDecoration(
                     labelText: AppLocale.first_name.getString(context)),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return AppLocale.required_field.getString(context);
@@ -76,23 +97,32 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
               ),
               const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SecondaryCustomButton(
-                      onPressed: () => Navigator.pop(context),
-                      text: AppLocale.mail.getString(context)),
-                  PrimaryCustomButton(
-                    onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        await ref.read(userRegistrationProvider).registerUser(
-                              context,
-                              emailController.text,
-                              passwordController.text,
-                              firstnameController.text,
-                            );
-                      }
-                    },
-                    text: AppLocale.save.getString(context),
+                  Expanded(
+                      flex: 4,
+                      child: TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text(
+                            AppLocale.cancel.getString(context),
+                            style: TextStyles.bodyStyle(
+                                color: Colors.grey, isBold: false),
+                          ))),
+                  Expanded(
+                    flex: 7,
+                    child: PrimaryCustomButton(
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          await ref.read(userRegistrationProvider).registerUser(
+                                context,
+                                emailController.text,
+                                passwordController.text,
+                                firstnameController.text,
+                              );
+                        }
+                      },
+                      text: AppLocale.save.getString(context),
+                    ),
                   ),
                 ],
               ),
