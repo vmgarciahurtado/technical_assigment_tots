@@ -71,148 +71,159 @@ class _UpdateClientScreenState extends ConsumerState<UpdateClientScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Form(
           key: formKey,
-          child: Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  _showImageSourceSelection(context);
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset(Res.images.circle),
-                    if (_imageFile != null)
-                      ClipOval(
-                        child: Image.file(
-                          _imageFile!,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    else if (_imageUrl != null && _imageUrl!.isNotEmpty)
-                      ClipOval(
-                        child: Image.network(
-                          _imageUrl!,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    else
-                      Image.asset(Res.images.image),
-                  ],
-                ),
-              ),
-              TextFormField(
-                controller: firstNameController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.first_name.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocale.required_field.getString(context);
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: lastNameController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.last_name.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocale.required_field.getString(context);
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.mail.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty || !value.contains('@')) {
-                    return AppLocale.invalid_mail.getString(context);
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: addressController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.address.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: captionController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.caption.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  return null;
-                },
-              ),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                      flex: 4,
-                      child: TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Text(
-                            AppLocale.cancel.getString(context),
-                            style: TextStyles.bodyStyle(
-                                color: Colors.grey, isBold: false),
-                          ))),
-                  Expanded(
-                    flex: 7,
-                    child: PrimaryCustomButton(
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          String? imagePath;
-                          if (_imageFile != null) {
-                            imagePath = await _saveImageLocally(_imageFile!);
-                          } else if (_imageUrl != null &&
-                              _imageUrl!.isNotEmpty) {
-                            imagePath = _imageUrl;
-                          } else {
-                            imagePath = widget.client.photo;
-                          }
-
-                          final updatedClient = Client(
-                            id: widget.client.id,
-                            firstname: firstNameController.text,
-                            lastname: lastNameController.text,
-                            email: emailController.text,
-                            address: addressController.text,
-                            photo: imagePath,
-                            caption: captionController.text,
-                          );
-
-                          await ref.read(clientProvider).updateClient(
-                              context, updatedClient.id!, updatedClient);
-
-                          Navigator.pop(context);
-                        }
-                      },
-                      text: AppLocale.update.getString(context),
-                    ),
+          child: SingleChildScrollView(
+              child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height,
                   ),
-                ],
-              ),
-            ],
-          ),
+                  child: IntrinsicHeight(
+                      child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _showImageSourceSelection(context);
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(Res.images.circle),
+                            if (_imageFile != null)
+                              ClipOval(
+                                child: Image.file(
+                                  _imageFile!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            else if (_imageUrl != null && _imageUrl!.isNotEmpty)
+                              ClipOval(
+                                child: Image.network(
+                                  _imageUrl!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            else
+                              Image.asset(Res.images.image),
+                          ],
+                        ),
+                      ),
+                      TextFormField(
+                        controller: firstNameController,
+                        decoration: InputDecoration(
+                            labelText: AppLocale.first_name.getString(context)),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocale.required_field.getString(context);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: lastNameController,
+                        decoration: InputDecoration(
+                            labelText: AppLocale.last_name.getString(context)),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocale.required_field.getString(context);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                            labelText: AppLocale.mail.getString(context)),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              !value.contains('@')) {
+                            return AppLocale.invalid_mail.getString(context);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: addressController,
+                        decoration: InputDecoration(
+                            labelText: AppLocale.address.getString(context)),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: captionController,
+                        decoration: InputDecoration(
+                            labelText: AppLocale.caption.getString(context)),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                              flex: 4,
+                              child: TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text(
+                                    AppLocale.cancel.getString(context),
+                                    style: TextStyles.bodyStyle(
+                                        color: Colors.grey, isBold: false),
+                                  ))),
+                          Expanded(
+                            flex: 7,
+                            child: PrimaryCustomButton(
+                              onPressed: () async {
+                                if (formKey.currentState!.validate()) {
+                                  String? imagePath;
+                                  if (_imageFile != null) {
+                                    imagePath =
+                                        await _saveImageLocally(_imageFile!);
+                                  } else if (_imageUrl != null &&
+                                      _imageUrl!.isNotEmpty) {
+                                    imagePath = _imageUrl;
+                                  } else {
+                                    imagePath = widget.client.photo;
+                                  }
+
+                                  final updatedClient = Client(
+                                    id: widget.client.id,
+                                    firstname: firstNameController.text,
+                                    lastname: lastNameController.text,
+                                    email: emailController.text,
+                                    address: addressController.text,
+                                    photo: imagePath,
+                                    caption: captionController.text,
+                                  );
+
+                                  await ref.read(clientProvider).updateClient(
+                                      context,
+                                      updatedClient.id!,
+                                      updatedClient);
+
+                                  Navigator.pop(context);
+                                }
+                              },
+                              text: AppLocale.update.getString(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )))),
         ),
       ),
     );
