@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
 import 'package:thechnical_assignment_tots/domain/login/service/login_service.dart';
 import 'package:thechnical_assignment_tots/infrastructure/login/login_repository.dart';
+import 'package:thechnical_assignment_tots/presentation/presentation.dart';
 import 'package:thechnical_assignment_tots/presentation/shared/custom_loading.dart';
 
 final obscurePasswordProvider = StateProvider<bool>((ref) => true);
@@ -26,9 +27,10 @@ class LoginServiceProvider {
       'password': password,
     });
 
-    Navigator.pop(context);
     result.fold(
       (error) {
+        Navigator.pop(context);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(error),
@@ -36,7 +38,12 @@ class LoginServiceProvider {
           ),
         );
       },
-      (data) {
+      (data) async {
+        if (ref.exists(clientProvider)) {
+          await ref.refresh(clientProvider).loadClients();
+        }
+        Navigator.pop(context);
+
         context.go('/clients');
       },
     );

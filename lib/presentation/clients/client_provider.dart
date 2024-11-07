@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
-import 'package:thechnical_assignment_tots/config/router/app_router.dart';
 import 'package:thechnical_assignment_tots/domain/clients/interface/i_client.dart';
 import 'package:thechnical_assignment_tots/domain/domain.dart';
 import 'package:thechnical_assignment_tots/infrastructure/infrastructure.dart';
@@ -95,7 +94,7 @@ class ClientProvider extends ChangeNotifier {
           _allClients[index] = updatedData;
           searchClients(_searchQuery);
         }
-        loadClients();
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(AppLocale.success_client_updated.getString(context)),
