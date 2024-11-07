@@ -32,4 +32,15 @@ class TextStyles {
       fontSize: 14,
     );
   }
+
+  static TextStyle bodyUnderLineAlertStyle(
+      {Color color = Colors.black, bool isBold = false}) {
+    return TextStyle(
+      decoration: TextDecoration.underline,
+      color: color,
+      fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+      fontFamily: 'OpenSans',
+      fontSize: 18,
+    );
+  }
 }

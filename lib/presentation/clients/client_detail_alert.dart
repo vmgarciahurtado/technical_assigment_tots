@@ -18,7 +18,7 @@ class ClientDetailAlert {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (client.photo!.startsWith('http'))
+                if (client.photo != null && client.photo!.startsWith('http'))
                   Center(
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(50.0),
@@ -37,7 +37,7 @@ class ClientDetailAlert {
                             height: 80,
                             fit: BoxFit.cover,
                           ))),
-                if (!client.photo!.startsWith('http'))
+                if (client.photo != null && !client.photo!.startsWith('http'))
                   Center(
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(50.0),
