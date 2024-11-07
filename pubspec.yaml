@@ -16,8 +16,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   path_provider: ^2.1.4
   flutter_localization: ^0.2.2
-  lottie: ^3.1.2
-  flutter_svg: ^2.0.10+1
   flutter_secure_storage: ^9.2.2
   either_dart: ^1.0.0
   flutter_dotenv: ^5.2.1
@@ -26,6 +24,7 @@ dependencies:
   cached_network_image: ^3.2.0
   flutter_cache_manager: ^3.3.0
   image_picker: ^0.8.7+4
+  animate_do: ^3.3.4
 
 
 dev_dependencies:
@@ -36,6 +35,14 @@ dev_dependencies:
   custom_lint: ^0.6.5
   riverpod_lint: ^2.3.13
   riverpod_generator: ^2.4.3
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_icons: 
+  android: true 
+  ios: true
+  image_path: "assets/images/logo.png"
+
 
 flutter:
   uses-material-design: true

@@ -1,8 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:thechnical_assignment_tots/presentation/shared/assets.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -52,16 +52,13 @@ class SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Lottie.asset(
-          Res.images.splash,
-          fit: BoxFit.contain,
-          controller: _controller,
-          onLoaded: (composition) {
-            _controller
-              ..duration = composition.duration
-              ..forward();
-          },
+      body: FadeIn(
+        duration: const Duration(seconds: 2),
+        child: Center(
+          child: Image.asset(
+            Res.images.logo,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );

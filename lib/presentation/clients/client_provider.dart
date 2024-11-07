@@ -95,7 +95,7 @@ class ClientProvider extends ChangeNotifier {
           _allClients[index] = updatedData;
           searchClients(_searchQuery);
         }
-
+        loadClients();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(AppLocale.success_client_updated.getString(context)),
@@ -201,9 +201,13 @@ final userRepositoryProvider =
     Provider<IClientRepository>((ref) => ClientRepository());
 
 final clientRegistrationProvider =
-    Provider((ref) => ClientRegistrationService());
+    Provider((ref) => ClientRegistrationService(ref));
 
 class ClientRegistrationService {
+  final Ref ref;
+
+  ClientRegistrationService(this.ref);
+
   Future<void> registerClient(
       BuildContext context,
       String firstname,
@@ -235,6 +239,8 @@ class ClientRegistrationService {
         );
       },
       (data) {
+        ref.read(clientProvider).loadClients();
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(AppLocale.success_client_registered.getString(context)),
           backgroundColor: Colors.green.shade300,
