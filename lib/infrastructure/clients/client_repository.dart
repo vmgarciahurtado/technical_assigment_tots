@@ -67,8 +67,17 @@ class ClientRepository extends IClientRepository {
   @override
   Future<Either<String, dynamic>> deleteClient(int clientId) async {
     try {
-      final data = {'id': clientId};
-      final response = await Api.delete('/clients', data);
+      final tokenKey = dotenv.env['TOKEN_VALUE'] ?? '';
+      final token = await _secureStorage.read(key: tokenKey);
+
+      if (token == null) {
+        throw Exception('Token unavailable');
+      }
+
+      final headers = {'Authorization': 'Bearer $token'};
+
+      final response =
+          await Api.delete('/clients/$clientId', {}, headers: headers);
 
       int statusCode = response.statusCode!;
 

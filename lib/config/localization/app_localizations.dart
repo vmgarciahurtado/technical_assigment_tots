@@ -15,10 +15,12 @@ mixin AppLocale {
   static const String edit = 'edit';
   static const String add_new_client = 'add_new_client';
   static const String save = 'save';
+  static const String update = 'update';
   static const String cancel = 'cancel';
   static const String first_name = 'first_name';
   static const String last_name = 'last_name';
   static const String email_address = 'email_address';
+  static const String address = 'address';
   static const String upload_image = 'upload_image';
   static const String add_new_user = 'add_new_user';
   static const String load_more = 'load_more';
@@ -32,6 +34,9 @@ mixin AppLocale {
   static const String success_client_deleted = 'success_client_deleted';
   static const String loading = 'loading';
   static const String caption = 'caption';
+  static const String edit_client = 'edit_client';
+  static const String confirm_delete_title = 'confirm_delete_title';
+  static const String confirm_delete_message = 'confirm_delete_message';
 
   static const Map<String, dynamic> EN = {
     login: 'LOG IN',
@@ -48,10 +53,12 @@ mixin AppLocale {
     edit: 'Edit',
     add_new_client: 'Add new client',
     save: 'Save',
+    update: 'Update',
     cancel: 'Cancel',
     first_name: 'First Name',
     last_name: 'Last Name',
     email_address: 'Email Address',
+    address: 'Address',
     upload_image: 'Upload Image',
     add_new_user: 'Add new user',
     load_more: 'LOAD MORE',
@@ -64,7 +71,11 @@ mixin AppLocale {
     success_client_updated: 'Client successfully updated',
     success_client_deleted: 'Client successfully deleted',
     loading: 'Loading..',
-    caption: 'Caption'
+    caption: 'Caption',
+    edit_client: 'Edit client',
+    confirm_delete_title: 'Confirm Deletion',
+    confirm_delete_message:
+        'Are you sure you want to delete this client? This action cannot be undone.',
   };
 
   static const Map<String, dynamic> ES = {
@@ -82,10 +93,12 @@ mixin AppLocale {
     edit: 'Editar',
     add_new_client: 'Añadir Cliente Nuevo',
     save: 'Guardar',
+    update: 'Actualizar',
     cancel: 'Cancelar',
     first_name: 'Primer Nombre',
     last_name: 'Segundo Nombre',
     email_address: 'Dirección de Correo',
+    address: 'Dirección',
     upload_image: 'Subir Imagen',
     add_new_user: 'Añadir Nuevo Usuario',
     load_more: 'CARGAR MAS',
@@ -99,5 +112,9 @@ mixin AppLocale {
     success_client_deleted: 'Cliente eliminado',
     loading: 'Cargando..',
     caption: 'leyenda..',
+    edit_client: 'Editar cliente',
+    confirm_delete_title: 'Confirmar Eliminación',
+    confirm_delete_message:
+        '¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.',
   };
 }

@@ -55,9 +55,14 @@ class Api {
     }
   }
 
-  static Future<Response> delete(String path, Map<String, dynamic> data) async {
+  static Future<Response> delete(String path, Map<String, dynamic> data,
+      {Map<String, dynamic>? headers}) async {
     try {
-      final resp = await _dio.delete(path, data: data);
+      final resp = await _dio.delete(path,
+          data: data,
+          options: Options(
+            headers: headers,
+          ));
       return resp;
     } on DioException catch (e) {
       if (e.response != null) {

@@ -64,6 +64,100 @@ class ClientProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> updateClient(
+      BuildContext context, int clientId, Client updatedClient) async {
+    CustomLoading(
+      title: AppLocale.loading.getString(context),
+      context: context,
+    );
+
+    final result = await _clientService.updateClient(clientId, updatedClient);
+    Navigator.pop(context);
+    result.fold(
+      (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: Colors.red.shade300,
+          ),
+        );
+      },
+      (data) {
+        final updatedData = Client.fromJson(data['data']);
+
+        int index =
+            _allClients.indexWhere((client) => client.id == updatedData.id);
+        if (index != -1) {
+          _allClients[index] = updatedData;
+          searchClients(_searchQuery);
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocale.success_client_updated.getString(context)),
+            backgroundColor: Colors.green.shade300,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> deleteClient(BuildContext context, int clientId) async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocale.confirm_delete_title.getString(context)),
+        content: Text(AppLocale.confirm_delete_message.getString(context)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(AppLocale.cancel.getString(context)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(AppLocale.delete.getString(context)),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm != true) {
+      return;
+    }
+
+    CustomLoading(
+      title: AppLocale.loading.getString(context),
+      context: context,
+    );
+
+    final result = await _clientService.deleteClient(clientId);
+    Navigator.pop(context);
+
+    result.fold(
+      (error) {
+        // Mostrar mensaje de error
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: Colors.red.shade300,
+          ),
+        );
+      },
+      (data) {
+        _allClients.removeWhere((client) => client.id == clientId);
+        displayedClients.removeWhere((client) => client.id == clientId);
+        notifyListeners();
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocale.success_client_deleted.getString(context)),
+            backgroundColor: Colors.green.shade300,
+          ),
+        );
+      },
+    );
+  }
 }
 
 final clientProvider = ChangeNotifierProvider<ClientProvider>((ref) {

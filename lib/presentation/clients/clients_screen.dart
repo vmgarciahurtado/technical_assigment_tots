@@ -140,9 +140,13 @@ class ClientsScreen extends ConsumerWidget {
                                       trailing: PopupMenuButton<String>(
                                         onSelected: (value) {
                                           if (value == 'editar') {
-                                            // Lógica para editar
+                                            context.push('/client_update',
+                                                extra: client);
                                           } else if (value == 'eliminar') {
-                                            // Lógica para eliminar
+                                            ref
+                                                .read(clientProvider)
+                                                .deleteClient(
+                                                    context, client.id!);
                                           }
                                         },
                                         itemBuilder: (BuildContext context) => [
