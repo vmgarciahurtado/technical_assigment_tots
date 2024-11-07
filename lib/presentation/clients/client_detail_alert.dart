@@ -1,6 +1,11 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
 import 'package:thechnical_assignment_tots/domain/domain.dart';
+import 'package:thechnical_assignment_tots/infrastructure/cache/cache_manager.dart';
+import 'package:thechnical_assignment_tots/presentation/presentation.dart';
 
 class ClientDetailAlert {
   static void show(BuildContext context, Client client) {
@@ -13,26 +18,45 @@ class ClientDetailAlert {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (client.photo != null)
+                if (client.photo!.startsWith('http'))
                   Center(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50.0),
-                      child: Image.network(
-                        client.photo is String
-                            ? client.photo
-                            : 'https://via.placeholder.com/150',
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Icon(
-                            Icons.person,
-                            size: 100,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: CachedNetworkImage(
+                            cacheManager: CustomCacheManager(),
+                            imageUrl: client.photo!,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Image.asset(
+                              Res.images.noImage,
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          ))),
+                if (!client.photo!.startsWith('http'))
+                  Center(
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.file(
+                            File(client.photo!),
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          ))),
+                if (client.photo == null || client.photo == '')
+                  Center(
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.asset(
+                            'assets/images/no_image.png',
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          ))),
                 const SizedBox(height: 20.0),
                 _buildDetailRow('ID', client.id?.toString() ?? 'N/A'),
                 const SizedBox(height: 8.0),
