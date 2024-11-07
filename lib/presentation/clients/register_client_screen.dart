@@ -42,6 +42,16 @@ class _RegisterScreenState extends ConsumerState<RegisterClientScreen> {
           key: formKey,
           child: Column(
             children: [
+              InkWell(
+                child: Stack(
+                  alignment: const AlignmentDirectional(0, 0),
+                  children: [
+                    Image.asset(Res.images.circle),
+                    Image.asset(Res.images.image),
+                  ],
+                ),
+                onTap: () {},
+              ),
               TextFormField(
                 controller: firstNameController,
                 decoration: InputDecoration(

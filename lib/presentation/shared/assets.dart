@@ -16,6 +16,8 @@ class _ResImages {
 
   final splash = 'assets/images/splash.json';
   final noImage = 'assets/images/no_image.png';
+  final image = 'assets/images/image.png';
+  final circle = 'assets/images/circle.png';
   final logo = 'assets/images/logo.png';
   final loginTopGradient = 'assets/images/gradients/login_top.png';
   final loginCenterGradient = 'assets/images/gradients/login_center.png';
