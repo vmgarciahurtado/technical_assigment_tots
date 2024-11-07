@@ -37,6 +37,8 @@ mixin AppLocale {
   static const String edit_client = 'edit_client';
   static const String confirm_delete_title = 'confirm_delete_title';
   static const String confirm_delete_message = 'confirm_delete_message';
+  static const String confirm_close_title = 'confirm_close_title';
+  static const String confirm_close_message = 'confirm_close_message';
   static const String client_detail = 'client_detail';
   static const String close = 'close';
   static const String created_at = 'created_at';
@@ -81,6 +83,8 @@ mixin AppLocale {
     confirm_delete_message:
         'Are you sure you want to delete this client? This action cannot be undone.',
     client_detail: 'Client detail',
+    confirm_close_title: 'Confirm close session',
+    confirm_close_message: 'Are you sure you want to close this session?',
     close: 'Close',
     created_at: 'Created at',
     updated_at: 'Updated at',
@@ -125,6 +129,9 @@ mixin AppLocale {
     confirm_delete_message:
         '¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.',
     client_detail: 'Detalle del cliente',
+    confirm_close_title: 'Confirmar cerrar sesion',
+    confirm_close_message:
+        '¿Estás seguro de que deseas cerrar la sesion de este usuario?',
     close: 'Cerrar',
     created_at: 'Creado el',
     updated_at: 'Actualizado el',

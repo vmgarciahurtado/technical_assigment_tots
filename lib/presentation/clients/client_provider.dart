@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
+import 'package:thechnical_assignment_tots/config/router/app_router.dart';
 import 'package:thechnical_assignment_tots/domain/clients/interface/i_client.dart';
 import 'package:thechnical_assignment_tots/domain/domain.dart';
 import 'package:thechnical_assignment_tots/infrastructure/infrastructure.dart';
@@ -156,6 +159,31 @@ class ClientProvider extends ChangeNotifier {
           ),
         );
       },
+    );
+  }
+
+  Future<void> closeSession(BuildContext context) async {
+    const storage = FlutterSecureStorage();
+
+    showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocale.confirm_close_title.getString(context)),
+        content: Text(AppLocale.confirm_close_message.getString(context)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(AppLocale.cancel.getString(context)),
+          ),
+          TextButton(
+            onPressed: () async {
+              await storage.deleteAll();
+              context.go('/login');
+            },
+            child: Text(AppLocale.close.getString(context)),
+          ),
+        ],
+      ),
     );
   }
 }

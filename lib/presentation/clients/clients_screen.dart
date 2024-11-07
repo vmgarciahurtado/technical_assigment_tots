@@ -56,6 +56,25 @@ class ClientsScreen extends ConsumerWidget {
             fit: BoxFit.cover,
           ),
         ),
+        Positioned(
+          right: 10,
+          top: 20,
+          child: InkWell(
+            onTap: () => ref.read(clientProvider).closeSession(context),
+            child: Row(
+              children: [
+                Text(
+                  'close session',
+                  style: TextStyles.bodyUnderLineStyle(),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Icon(Icons.exit_to_app_outlined),
+              ],
+            ),
+          ),
+        ),
         Container(
           margin: const EdgeInsets.only(top: 30),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
