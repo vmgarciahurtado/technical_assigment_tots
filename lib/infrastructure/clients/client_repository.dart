@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:thechnical_assignment_tots/domain/clients/interface/i_client.dart';
@@ -33,6 +34,69 @@ class ClientRepository extends IClientRepository {
       }
     } catch (e) {
       return [];
+    }
+  }
+
+  @override
+  Future<Either<String, dynamic>> createClient(
+      Map<String, dynamic> data) async {
+    try {
+      final tokenKey = dotenv.env['TOKEN_VALUE'] ?? '';
+      final token = await _secureStorage.read(key: tokenKey);
+
+      if (token == null) {
+        throw Exception('Token unavailable');
+      }
+
+      final headers = {'Authorization': 'Bearer $token'};
+
+      final response = await Api.post('/clients', data, headers: headers);
+
+      int statusCode = response.statusCode!;
+
+      if (statusCode == 200 || statusCode == 201) {
+        return Right(response.data);
+      } else {
+        return Left(response.data['message'] ?? 'Unknown error');
+      }
+    } catch (e) {
+      return Left('Error: $e');
+    }
+  }
+
+  @override
+  Future<Either<String, dynamic>> deleteClient(int clientId) async {
+    try {
+      final data = {'id': clientId};
+      final response = await Api.delete('/clients', data);
+
+      int statusCode = response.statusCode!;
+
+      if (statusCode == 200 || statusCode == 204) {
+        return Right(response.data);
+      } else {
+        return Left(response.data['message'] ?? 'Unknown error');
+      }
+    } catch (e) {
+      return Left('Error: $e');
+    }
+  }
+
+  @override
+  Future<Either<String, dynamic>> updateClient(
+      int clientId, Client client) async {
+    try {
+      final response = await Api.post('/clients/$clientId', client.toJson());
+
+      int statusCode = response.statusCode!;
+
+      if (statusCode == 200 || statusCode == 204) {
+        return Right(response.data);
+      } else {
+        return Left(response.data['message'] ?? 'Unknown error');
+      }
+    } catch (e) {
+      return Left('Error: $e');
     }
   }
 }

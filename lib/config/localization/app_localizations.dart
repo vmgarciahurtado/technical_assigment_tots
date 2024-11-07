@@ -27,7 +27,11 @@ mixin AppLocale {
   static const String diferent_password = 'diferent_password';
   static const String required_field = 'required_field';
   static const String success_user_register = 'success_user_register';
+  static const String success_client_registered = 'success_client_register';
+  static const String success_client_updated = 'success_client_updated';
+  static const String success_client_deleted = 'success_client_deleted';
   static const String loading = 'loading';
+  static const String caption = 'caption';
 
   static const Map<String, dynamic> EN = {
     login: 'LOG IN',
@@ -37,9 +41,9 @@ mixin AppLocale {
     mail: 'Mail',
     password: 'Password',
     confirm_password: 'Confirm password',
-    search: 'Search',
+    search: 'Search..',
     register: 'Register',
-    clients: 'Clients',
+    clients: 'CLIENTS',
     add_new: 'Add New',
     edit: 'Edit',
     add_new_client: 'Add new client',
@@ -56,7 +60,11 @@ mixin AppLocale {
     diferent_password: 'Passwords do not match',
     required_field: 'The field is required',
     success_user_register: 'User successfully registered',
-    loading: 'Loading..'
+    success_client_registered: 'Client successfully registered',
+    success_client_updated: 'Client successfully updated',
+    success_client_deleted: 'Client successfully deleted',
+    loading: 'Loading..',
+    caption: 'Caption'
   };
 
   static const Map<String, dynamic> ES = {
@@ -67,9 +75,9 @@ mixin AppLocale {
     mail: 'Correo',
     password: 'Contraseña',
     confirm_password: 'Confirmar contraseña',
-    search: 'Buscar',
+    search: 'Buscar..',
     register: 'Registrar',
-    clients: 'Clientes',
+    clients: 'CLIENTES',
     add_new: 'Añadir Nuevo',
     edit: 'Editar',
     add_new_client: 'Añadir Cliente Nuevo',
@@ -86,6 +94,10 @@ mixin AppLocale {
     diferent_password: 'Las contraseñas no coinciden',
     required_field: 'El campo es requerido',
     success_user_register: 'Usuario registrado con exito',
+    success_client_registered: 'Cliente registrado exitosamente',
+    success_client_updated: 'Cliente actualizado exitosamente',
+    success_client_deleted: 'Cliente eliminado',
     loading: 'Cargando..',
+    caption: 'leyenda..',
   };
 }

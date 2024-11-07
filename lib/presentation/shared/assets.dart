@@ -17,7 +17,14 @@ class _ResImages {
   final splash = 'assets/images/splash.json';
   final noImage = 'assets/images/no_image.png';
   final logo = 'assets/images/logo.png';
-  final loginTopGradient = 'assets/images/gradients/login_top.jpeg';
-  final loginCenterGradient = 'assets/images/gradients/login_center.jpeg';
-  final loginBottomGradient = 'assets/images/gradients/login_bottom.jpeg';
+  final loginTopGradient = 'assets/images/gradients/login_top.png';
+  final loginCenterGradient = 'assets/images/gradients/login_center.png';
+  final loginBottomGradient = 'assets/images/gradients/login_bottom.png';
+  final usersTopGradient = 'assets/images/gradients/users_top.png';
+  final usersCenterRightGradient =
+      'assets/images/gradients/users_center_right.png';
+  final usersBottomLeftGradient =
+      'assets/images/gradients/users_bottom_left.png';
+  final usersBottomRightGradient =
+      'assets/images/gradients/users_bottom_right.png';
 }

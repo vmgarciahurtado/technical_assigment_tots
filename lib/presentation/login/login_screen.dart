@@ -4,7 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
 import 'package:thechnical_assignment_tots/presentation/presentation.dart';
-import 'package:thechnical_assignment_tots/presentation/shared/custom_secondary_button.dart';
 import 'login_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {

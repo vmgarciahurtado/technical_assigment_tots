@@ -4,3 +4,8 @@ export 'package:thechnical_assignment_tots/presentation/shared/assets.dart';
 export 'package:thechnical_assignment_tots/presentation/shared/custom_primary_button.dart';
 export 'package:thechnical_assignment_tots/presentation/clients/clients_screen.dart';
 export 'package:thechnical_assignment_tots/presentation/users/register_user_screen.dart';
+export 'package:thechnical_assignment_tots/presentation/clients/client_card.dart';
+export 'package:thechnical_assignment_tots/presentation/clients/client_provider.dart';
+export 'package:thechnical_assignment_tots/presentation/clients/liading_skeleton.dart';
+export 'package:thechnical_assignment_tots/presentation/shared/custom_card.dart';
+export 'package:thechnical_assignment_tots/presentation/shared/custom_secondary_button.dart';

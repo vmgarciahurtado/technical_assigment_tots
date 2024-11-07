@@ -22,9 +22,16 @@ class Api {
     }
   }
 
-  static Future<Response> post(String path, Map<String, dynamic> data) async {
+  static Future<Response> post(String path, Map<String, dynamic> data,
+      {Map<String, dynamic>? headers}) async {
     try {
-      final resp = await _dio.post(path, data: data);
+      final resp = await _dio.post(
+        path,
+        data: data,
+        options: Options(
+          headers: headers,
+        ),
+      );
       return resp;
     } on DioException catch (e) {
       if (e.response != null) {
@@ -48,14 +55,20 @@ class Api {
     }
   }
 
-  static Future delete(String path, Map<String, dynamic> data) async {
-    final formData = FormData.fromMap(data);
-
+  static Future<Response> delete(String path, Map<String, dynamic> data) async {
     try {
-      final resp = await _dio.delete(path, data: formData);
+      final resp = await _dio.delete(path, data: data);
       return resp;
     } on DioException catch (e) {
-      throw ('Error en el DELETE $e');
+      if (e.response != null) {
+        return e.response!;
+      } else {
+        return Response(
+          requestOptions: e.requestOptions,
+          statusCode: 500,
+          data: {'message': e.message},
+        );
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thechnical_assignment_tots/presentation/shared/custom_card.dart';
+import 'package:thechnical_assignment_tots/presentation/presentation.dart';
 
 class LoadingSkeleton extends StatelessWidget {
   const LoadingSkeleton({super.key});

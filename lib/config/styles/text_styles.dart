@@ -1,36 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TextStyles {
-  static TextStyle largeStyle(
-      {Color color = Colors.black, bool isBold = false}) {
-    return TextStyle(
-      color: color,
-      fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-      fontFamily: 'OpenSans',
-      fontSize: 34,
-    );
-  }
-
-  static TextStyle titleStyle(
-      {Color color = Colors.black, bool isBold = false}) {
-    return TextStyle(
-      color: color,
-      fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-      fontFamily: 'OpenSans',
-      fontSize: 30,
-    );
-  }
-
-  static TextStyle title2Style(
-      {Color color = Colors.black, bool isBold = false}) {
-    return TextStyle(
-      color: color,
-      fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-      fontFamily: 'OpenSans',
-      fontSize: 28,
-    );
-  }
-
   static TextStyle subTitleStyle(
       {Color color = Colors.black, bool isBold = false}) {
     return TextStyle(

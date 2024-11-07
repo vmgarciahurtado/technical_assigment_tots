@@ -3,9 +3,9 @@ class Client {
   String? firstname;
   String? lastname;
   String? email;
-  dynamic? address;
-  dynamic? photo;
-  dynamic? caption;
+  dynamic address;
+  dynamic photo;
+  dynamic caption;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? userId;

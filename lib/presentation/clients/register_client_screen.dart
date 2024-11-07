@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
 import 'package:thechnical_assignment_tots/presentation/presentation.dart';
-import 'package:thechnical_assignment_tots/presentation/users/user_provider.dart';
 
-class RegisterUserScreen extends ConsumerStatefulWidget {
-  const RegisterUserScreen({super.key});
+class RegisterClientScreen extends ConsumerStatefulWidget {
+  const RegisterClientScreen({super.key});
 
   @override
-  ConsumerState<RegisterUserScreen> createState() => _RegisterScreenState();
+  ConsumerState<RegisterClientScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
+class _RegisterScreenState extends ConsumerState<RegisterClientScreen> {
   final formKey = GlobalKey<FormState>();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final firstnameController = TextEditingController();
+  final addressController = TextEditingController();
+  final captionController = TextEditingController();
 
   @override
   void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
-    passwordController.dispose();
-    firstnameController.dispose();
+    addressController.dispose();
+    captionController.dispose();
     super.dispose();
   }
 
@@ -32,7 +34,7 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(AppLocale.add_new_user.getString(context)),
+        title: Text(AppLocale.add_new_client.getString(context)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -40,6 +42,32 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
           key: formKey,
           child: Column(
             children: [
+              TextFormField(
+                controller: firstNameController,
+                decoration: InputDecoration(
+                    labelText: AppLocale.first_name.getString(context)),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocale.required_field.getString(context);
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: lastNameController,
+                decoration: InputDecoration(
+                    labelText: AppLocale.last_name.getString(context)),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocale.required_field.getString(context);
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
@@ -54,38 +82,9 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
               ),
               const SizedBox(height: 16),
               TextFormField(
-                controller: passwordController,
+                controller: captionController,
                 decoration: InputDecoration(
-                    labelText: AppLocale.password.getString(context)),
-                obscureText: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocale.invalid_password.getString(context);
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: confirmPasswordController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.confirm_password.getString(context)),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null ||
-                      value.isEmpty ||
-                      (value != passwordController.text)) {
-                    return AppLocale.diferent_password.getString(context);
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: firstnameController,
-                decoration: InputDecoration(
-                    labelText: AppLocale.first_name.getString(context)),
+                    labelText: AppLocale.caption.getString(context)),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -112,12 +111,16 @@ class _RegisterScreenState extends ConsumerState<RegisterUserScreen> {
                     child: PrimaryCustomButton(
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
-                          await ref.read(userRegistrationProvider).registerUser(
-                                context,
-                                emailController.text,
-                                passwordController.text,
-                                firstnameController.text,
-                              );
+                          await ref
+                              .read(clientRegistrationProvider)
+                              .registerClient(
+                                  context,
+                                  firstNameController.text,
+                                  lastNameController.text,
+                                  emailController.text,
+                                  addressController.text,
+                                  '',
+                                  captionController.text);
                         }
                       },
                       text: AppLocale.save.getString(context),
