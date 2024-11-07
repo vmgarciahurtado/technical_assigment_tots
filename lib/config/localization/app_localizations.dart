@@ -37,6 +37,10 @@ mixin AppLocale {
   static const String edit_client = 'edit_client';
   static const String confirm_delete_title = 'confirm_delete_title';
   static const String confirm_delete_message = 'confirm_delete_message';
+  static const String client_detail = 'client_detail';
+  static const String close = 'close';
+  static const String created_at = 'created_at';
+  static const String updated_at = 'updated_at';
 
   static const Map<String, dynamic> EN = {
     login: 'LOG IN',
@@ -73,9 +77,13 @@ mixin AppLocale {
     loading: 'Loading..',
     caption: 'Caption',
     edit_client: 'Edit client',
-    confirm_delete_title: 'Confirm Deletion',
+    confirm_delete_title: 'Confirm deletion',
     confirm_delete_message:
         'Are you sure you want to delete this client? This action cannot be undone.',
+    client_detail: 'Client detail',
+    close: 'Close',
+    created_at: 'Created at',
+    updated_at: 'Updated at',
   };
 
   static const Map<String, dynamic> ES = {
@@ -113,8 +121,12 @@ mixin AppLocale {
     loading: 'Cargando..',
     caption: 'leyenda..',
     edit_client: 'Editar cliente',
-    confirm_delete_title: 'Confirmar Eliminación',
+    confirm_delete_title: 'Confirmar eliminación',
     confirm_delete_message:
         '¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.',
+    client_detail: 'Detalle del cliente',
+    close: 'Cerrar',
+    created_at: 'Creado el',
+    updated_at: 'Actualizado el',
   };
 }

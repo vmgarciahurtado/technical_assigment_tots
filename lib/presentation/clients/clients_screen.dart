@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thechnical_assignment_tots/config/config.dart';
-import 'package:thechnical_assignment_tots/config/router/app_router.dart';
+import 'package:thechnical_assignment_tots/presentation/clients/client_detail_alert.dart';
 import 'package:thechnical_assignment_tots/presentation/presentation.dart';
 
 class ClientsScreen extends ConsumerWidget {
@@ -112,7 +112,6 @@ class ClientsScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-
               Expanded(
                 child: clientProviderInstance.isLoading
                     ? const LoadingSkeleton()
@@ -130,6 +129,8 @@ class ClientsScreen extends ConsumerWidget {
                                   CustomCard(
                                     padding: const EdgeInsets.all(0.0),
                                     body: ListTile(
+                                      onTap: () => ClientDetailAlert.show(
+                                          context, client),
                                       leading: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(30.0),
@@ -172,7 +173,6 @@ class ClientsScreen extends ConsumerWidget {
                             },
                           ),
               ),
-              // Botón para cargar más clientes
               if (!clientProviderInstance.isLoading &&
                   clientProviderInstance.displayedClients.length <
                       clientProviderInstance.totalClientsCount)
